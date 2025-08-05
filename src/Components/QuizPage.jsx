@@ -12,12 +12,12 @@ export default function QuizPage() {
     const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-    const [timeLeft, setTimeLeft] = useState(150); // 2.5 minutes
+    const [timeLeft, setTimeLeft] = useState(300); // 2.5 minutes // 2700 - 45 Mint
 
     const currentQuestion = questions[currentIndex];
     const hasCheatedRef = useRef(false); // 🔒 cheating flag
 
-    // 👁️‍🗨️ Cheating Prevention
+    // Cheating Prevention
     useEffect(() => {
         const handleVisibilityChange = () => {
             if (document.visibilityState === "hidden" && !hasCheatedRef.current) {

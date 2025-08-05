@@ -42,7 +42,7 @@ export default function MainPage() {
 
             <button
                 onClick={handleStart}
-                className="bg-blue-600 text-white px-12 py-3 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-12 py-3 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition cursor-pointer"
                 data-aos="zoom-in"
             >
                 <FaPlay /> Let’s Start

@@ -19,26 +19,26 @@ const questions = [
         ],
         correctAnswer: "npm install tailwindcss"
     },
-    // {
-    //     question: "Q3: In which file do you typically configure Tailwind CSS settings?",
-    //     options: [
-    //         "tailwind.config.js",
-    //         "tailwind.settings.json",
-    //         "main.css",
-    //         "config.tailwind.json"
-    //     ],
-    //     correctAnswer: "tailwind.config.js"
-    // },
-    // {
-    //     question: "Q4: What is the class 'flex' used for in Tailwind CSS?",
-    //     options: [
-    //         "To set font size",
-    //         "To create a flex container",
-    //         "To add a shadow",
-    //         "To make text bold"
-    //     ],
-    //     correctAnswer: "To create a flex container"
-    // },
+    {
+        question: "Q3: In which file do you typically configure Tailwind CSS settings?",
+        options: [
+            "tailwind.config.js",
+            "tailwind.settings.json",
+            "main.css",
+            "config.tailwind.json"
+        ],
+        correctAnswer: "tailwind.config.js"
+    },
+    {
+        question: "Q4: What is the class 'flex' used for in Tailwind CSS?",
+        options: [
+            "To set font size",
+            "To create a flex container",
+            "To add a shadow",
+            "To make text bold"
+        ],
+        correctAnswer: "To create a flex container"
+    },
     // {
     //     question: "Q5: Which class applies horizontal padding of 4 in Tailwind?",
     //     options: [
@@ -139,16 +139,16 @@ const questions = [
     //     ],
     //     correctAnswer: "mb-4"
     // },
-    {
-        question: "Q15: Which class would make text bold in Tailwind?",
-        options: [
-            "font-weight-bold",
-            "text-bold",
-            "font-bold",
-            "bold"
-        ],
-        correctAnswer: "font-bold"
-    }
+    // {
+    //     question: "Q15: Which class would make text bold in Tailwind?",
+    //     options: [
+    //         "font-weight-bold",
+    //         "text-bold",
+    //         "font-bold",
+    //         "bold"
+    //     ],
+    //     correctAnswer: "font-bold"
+    // }
 ];
 
 export default questions;

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import questions from "../Data/questions";
+import {
+    Timer,
+    ArrowLeft,
+    ArrowRight,
+    CheckCircle
+} from "lucide-react"; // Import Icons
 
 export default function QuizPage() {
     const navigate = useNavigate();
@@ -53,24 +59,31 @@ export default function QuizPage() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-8 relative">
-            {/* Timer in top-right corner */}
-            <div className="absolute top-6 right-4 text-lg font-semibold text-white bg-red-800 px-4 py-2 rounded-full w-52 shadow">
-                ⏳ Time Left: {formatTime(timeLeft)}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-10">
+            {/* Timer */}
+            <div className="absolute top-4 right-4 flex items-center gap-2 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-red-600 to-red-800 px-4 py-2 rounded-full shadow-md w-fit">
+                <Timer size={18} />
+                <span>Time Left: {formatTime(timeLeft)}</span>
             </div>
 
-            <div className="mb-6 pt-18">
-                <h2 className="text-3xl font-bold mb-2 text-blue-700">{`Question ${currentIndex + 1} of ${questions.length}`}</h2>
-                <p className="text-xl pt-4 font-medium">{currentQuestion.question}</p>
+            {/* Question */}
+            <div className="mb-8 mt-10 sm:mt-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-950 mb-2">
+                    Question {currentIndex + 1} of {questions.length}
+                </h2>
+                <p className="pt-3 font-medium sm:text-lg md:text-xl text-gray-900">{currentQuestion.question}</p>
             </div>
 
+            {/* Options */}
             <div className="space-y-4">
                 {currentQuestion.options.map((option, index) => (
                     <label
                         key={index}
-                        className={`block p-4 border rounded-lg cursor-pointer transition-all duration-300
-                        ${answers[currentIndex] === option ? "bg-blue-100 border-blue-500" : "hover:bg-gray-100"}
-                    `}
+                        className={`block w-full p-4 sm:p-5 border-2 rounded-xl text-sm sm:text-base md:text-lg cursor-pointer transition-all duration-300 shadow-sm 
+                    ${answers[currentIndex] === option
+                                ? "bg-blue-100 border-blue-500 text-blue-800"
+                                : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                            }`}
                     >
                         <input
                             type="radio"
@@ -78,20 +91,21 @@ export default function QuizPage() {
                             value={option}
                             checked={answers[currentIndex] === option}
                             onChange={() => handleOptionSelect(option)}
-                            className="mr-2"
+                            className="mr-2 accent-blue-600"
                         />
                         {option}
                     </label>
                 ))}
             </div>
 
-            <div className="flex justify-between mt-8">
+            {/* Navigation Buttons */}
+            <div className="flex flex-col sm:flex-row justify-between mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
                 <button
                     onClick={goToPrevious}
                     disabled={currentIndex === 0}
-                    data-aos="fade-right"
-                    className="bg-gray-800 hover:bg-gray-900 text-white py-2 px-12 font-medium rounded-lg disabled:opacity-50 cursor-pointer"
+                    className="flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                 >
+                    <ArrowLeft size={18} className="mr-2" />
                     Previous
                 </button>
 
@@ -99,19 +113,19 @@ export default function QuizPage() {
                     <button
                         onClick={finishQuiz}
                         disabled={answers[currentIndex] === null}
-                        // data-aos="fade-left"
-                        className="bg-green-600 hover:bg-green-700 text-white py-2 px-12 font-medium rounded-lg disabled:opacity-50 cursor-pointer"
+                        className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                     >
+                        <CheckCircle size={18} className="mr-2" />
                         Finish Quiz
                     </button>
                 ) : (
                     <button
                         onClick={goToNext}
                         disabled={answers[currentIndex] === null}
-                        data-aos="fade-left"
-                        className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-12 font-medium rounded-lg disabled:opacity-50 cursor-pointer"
+                        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                     >
                         Next
+                        <ArrowRight size={18} className="ml-2" />
                     </button>
                 )}
             </div>

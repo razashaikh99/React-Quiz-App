@@ -42,6 +42,7 @@ export default function ResultPage() {
     const percentage = ((correctCount / totalQuestions) * 100).toFixed(2);
 
     return (
+
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-indigo-100 to-yellow-100 py-12 px-4">
             <div className="bg-white p-6 md:p-10 rounded-2xl shadow-2xl w-full max-w-4xl text-center">
                 <h2 className="text-2xl md:text-4xl font-bold text-indigo-800 mb-6 md:mb-8 flex justify-center items-center gap-2" data-aos="fade-down">

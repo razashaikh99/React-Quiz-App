@@ -17,7 +17,7 @@ export default function QuizPage() {
     const currentQuestion = questions[currentIndex];
     const hasCheatedRef = useRef(false); // 🔒 cheating flag
 
-    // Cheating Logic ....
+    // Reset Quiz Due To Cheating Logic ....
     useEffect(() => {
         const handleVisibilityChange = () => {
             if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
@@ -47,7 +47,7 @@ export default function QuizPage() {
         navigate("/");
     };
 
-    // ⏱️ Timer Logic
+    // Timer Logic
     useEffect(() => {
         if (timeLeft <= 0) {
             finishQuiz(); // auto-submit
@@ -61,6 +61,7 @@ export default function QuizPage() {
         return () => clearInterval(timer);
     }, [timeLeft]);
 
+    // Format Time Function
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60).toString().padStart(2, "0");
         const secs = (seconds % 60).toString().padStart(2, "0");
@@ -73,18 +74,21 @@ export default function QuizPage() {
         setAnswers(newAnswers);
     };
 
+    // Next Page Button Function
     const goToNext = () => {
         if (currentIndex < questions.length - 1) {
             setCurrentIndex(currentIndex + 1);
         }
     };
 
+    // Previous Page Button Function
     const goToPrevious = () => {
         if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
         }
     };
 
+    // Complete Quiz Function
     const finishQuiz = () => {
         localStorage.setItem("quiz-answers", JSON.stringify(answers));
         navigate("/result");

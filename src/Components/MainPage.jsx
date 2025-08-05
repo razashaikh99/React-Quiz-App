@@ -9,14 +9,14 @@ export default function MainPage() {
 
     useEffect(() => {
         AOS.init({ duration: 800 });
-    }, []);
+    }, [])
 
     const handleStart = () => {
         navigate("/quiz")
     }
 
     return (
-        <div className="h-screen flex flex-col items-center justify-center text-center px-4">
+        <div className="min-h-screen overflow-hidden flex flex-col items-center justify-center text-center px-4 bg-white">
             <h1
                 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
                 data-aos="fade-up"

@@ -16,7 +16,7 @@ export default function MainPage() {
     }
 
     return (
-        <div className="min-h-screen overflow-hidden flex flex-col items-center justify-center text-center px-4 bg-white">
+        <div className="min-h-screen overflow-hidden flex flex-col items-center justify-center text-center px-4">
             <h1
                 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6"
                 data-aos="fade-up"

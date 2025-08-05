@@ -16,6 +16,33 @@ export default function QuizPage() {
 
     const currentQuestion = questions[currentIndex];
 
+    // CHEATING PREVENTION LOGIC
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "hidden") {
+                resetQuizDueToCheating();
+            }
+        };
+
+        const handleBlur = () => {
+            resetQuizDueToCheating();
+        };
+
+        window.addEventListener("blur", handleBlur);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener("blur", handleBlur);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, []);
+
+    const resetQuizDueToCheating = () => {
+        localStorage.removeItem("quiz-answers");
+        alert("Quiz has been reset because you switched tabs or minimized the window.");
+        navigate("/");
+    };
+
     useEffect(() => {
         if (timeLeft <= 0) {
             finishQuiz(); // auto-submit

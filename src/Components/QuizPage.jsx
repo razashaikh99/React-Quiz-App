@@ -93,14 +93,14 @@ export default function QuizPage() {
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-10">
             {/* Timer */}
-            <div className="absolute top-4 right-4 flex items-center gap-2 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-red-600 to-red-800 px-4 py-2 rounded-full shadow-md w-fit">
+            <div className="animate-pulse absolute top-4 right-4 flex items-center gap-2 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-red-600 to-red-800 px-4 py-2 rounded-full shadow-md w-fit">
                 <Timer size={18} />
                 <span>Time Left: {formatTime(timeLeft)}</span>
             </div>
 
             {/* Question */}
             <div className="mb-8 mt-10 sm:mt-6">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-950 mb-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-purple-900 mb-2">
                     Question {currentIndex + 1} of {questions.length}
                 </h2>
                 <p className="pt-3 font-medium sm:text-lg md:text-xl text-gray-900">{currentQuestion.question}</p>

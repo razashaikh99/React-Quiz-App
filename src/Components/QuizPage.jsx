@@ -18,27 +18,27 @@ export default function QuizPage() {
     const hasCheatedRef = useRef(false); // 🔒 cheating flag
 
     // Cheating Logic ....
-    // useEffect(() => {
-    //     const handleVisibilityChange = () => {
-    //         if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
-    //             resetQuizDueToCheating();
-    //         }
-    //     };
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
+                resetQuizDueToCheating();
+            }
+        };
 
-    //     const handleBlur = () => {
-    //         if (!hasCheatedRef.current) {
-    //             resetQuizDueToCheating();
-    //         }
-    //     };
+        const handleBlur = () => {
+            if (!hasCheatedRef.current) {
+                resetQuizDueToCheating();
+            }
+        };
 
-    //     window.addEventListener("blur", handleBlur);
-    //     document.addEventListener("visibilitychange", handleVisibilityChange);
+        window.addEventListener("blur", handleBlur);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    //     return () => {
-    //         window.removeEventListener("blur", handleBlur);
-    //         document.removeEventListener("visibilitychange", handleVisibilityChange);
-    //     };
-    // }, []);
+        return () => {
+            window.removeEventListener("blur", handleBlur);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, []);
 
     const resetQuizDueToCheating = () => {
         hasCheatedRef.current = true; // ✅ Prevent multiple resets

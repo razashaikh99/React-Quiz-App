@@ -80,7 +80,7 @@ export default function MainPage() {
             <div
                 data-aos="fade-up"
             >
-                <FaBrain className="text-blue-600 text-[100px] mb-6 animate-pulse mx-auto" />
+                <FaBrain className="text-blue-600 text-[100px] mb-6 motion-safe:animate-bounce mx-auto" />
 
                 <h1 className="mx-auto text-center text-4xl md:text-5xl font-extrabold text-gray-800 mb-10">
                     Welcome to the Quiz App
@@ -99,11 +99,14 @@ export default function MainPage() {
 
                 <button
                     onClick={handleStart}
-                    className="mt-10 mx-auto bg-btn text-white px-12 py-2 flex items-center gap-2 hover:hover-bg-btn cursor-pointer transition-all duration-300 shadow-lg hover:scale-105 rounded-full"
+                    className="mt-10 mx-auto bg-btn text-white px-12 py-3 rounded-full flex items-center gap-2
+                                transform transition duration-300 ease-in-out
+                                hover:scale-105 hover:-translate-y-1 cursor-pointer"
                     data-aos="zoom-in"
                 >
                     <FaPlay /> Let’s Start
                 </button>
+
             </div>
         </div>
     )

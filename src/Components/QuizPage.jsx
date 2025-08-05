@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import questions from "../Data/questions";
 import {
@@ -6,26 +6,29 @@ import {
     ArrowLeft,
     ArrowRight,
     CheckCircle
-} from "lucide-react"; // Import Icons
+} from "lucide-react";
 
 export default function QuizPage() {
     const navigate = useNavigate();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [answers, setAnswers] = useState(Array(questions.length).fill(null));
-    const [timeLeft, setTimeLeft] = useState(150); // 5 minutes = 300 seconds
+    const [timeLeft, setTimeLeft] = useState(150); // 2.5 minutes
 
     const currentQuestion = questions[currentIndex];
+    const hasCheatedRef = useRef(false); // 🔒 cheating flag
 
-    // CHEATING PREVENTION LOGIC
+    // 👁️‍🗨️ Cheating Prevention
     useEffect(() => {
         const handleVisibilityChange = () => {
-            if (document.visibilityState === "hidden") {
+            if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
                 resetQuizDueToCheating();
             }
         };
 
         const handleBlur = () => {
-            resetQuizDueToCheating();
+            if (!hasCheatedRef.current) {
+                resetQuizDueToCheating();
+            }
         };
 
         window.addEventListener("blur", handleBlur);
@@ -38,11 +41,13 @@ export default function QuizPage() {
     }, []);
 
     const resetQuizDueToCheating = () => {
+        hasCheatedRef.current = true; // ✅ Prevent multiple resets
         localStorage.removeItem("quiz-answers");
         alert("Quiz has been reset because you switched tabs or minimized the window.");
         navigate("/");
     };
 
+    // ⏱️ Timer Logic
     useEffect(() => {
         if (timeLeft <= 0) {
             finishQuiz(); // auto-submit
@@ -107,7 +112,7 @@ export default function QuizPage() {
                     <label
                         key={index}
                         className={`block w-full p-4 sm:p-5 border-2 rounded-xl text-sm sm:text-base md:text-lg cursor-pointer transition-all duration-300 shadow-sm 
-                    ${answers[currentIndex] === option
+                            ${answers[currentIndex] === option
                                 ? "bg-blue-100 border-blue-500 text-blue-800"
                                 : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                             }`}

@@ -29,7 +29,7 @@ export default function AnswerBreakdown() {
           return (
             <div
               key={index}
-              className={`p-4 border rounded-lg shadow-sm ${isCorrect ? "border-green-500 bg-green-50" : "border-red-500 bg-red-50"
+              className={`p-4 border rounded-lg shadow-sm text-sm md:text-base ${isCorrect ? "border-green-500 bg-green-50" : "border-red-500 bg-red-50"
                 }`}
               data-aos="fade-up"
             >
@@ -38,28 +38,34 @@ export default function AnswerBreakdown() {
                 {q.question}
               </p>
 
-              <p className="flex items-center gap-2">
-                Your Answer:
-                {isAnswered ? (
-                  <span className={`${isCorrect ? "text-green-600" : "text-red-600"}`}>
-                    {userAnswer}
-                    {isCorrect ? <CheckCircle className="inline ml-2 text-green-600" size={18} /> : <XCircle className="inline ml-2 text-red-600" size={18} />}
-                  </span>
-                ) : (
-                  <span className="text-gray-500 italic">Not Answered</span>
-                )}
-              </p>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <p className="flex items-center gap-2">
+                  Your Answer:
+                  {isAnswered ? (
+                    <span className={`${isCorrect ? "text-green-600" : "text-red-600"} flex items-center gap-1`}>
+                      {userAnswer}
+                      {isCorrect ? (
+                        <CheckCircle className="text-green-600" size={16} />
+                      ) : (
+                        <XCircle className="text-red-600" size={16} />
+                      )}
+                    </span>
+                  ) : (
+                    <span className="text-gray-500 italic">Not Answered</span>
+                  )}
+                </p>
 
-              <p>
+                <p className="flex items-center gap-2">
+                  Status:
+                  <span className={`${isCorrect ? "text-green-600" : "text-red-600"} font-semibold`}>
+                    {isCorrect ? "Correct" : "Incorrect"}
+                  </span>
+                </p>
+              </div>
+
+              <p className="mt-1">
                 Correct Answer:
                 <span className="text-green-700 font-medium ml-2">{q.correctAnswer}</span>
-              </p>
-
-              <p className="mt-1 flex items-center gap-2">
-                Status:
-                <span className={`${isCorrect ? "text-green-600" : "text-red-600"} font-semibold`}>
-                  {isCorrect ? "Correct" : "Incorrect"}
-                </span>
               </p>
             </div>
           );

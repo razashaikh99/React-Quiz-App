@@ -17,28 +17,28 @@ export default function QuizPage() {
     const currentQuestion = questions[currentIndex];
     const hasCheatedRef = useRef(false); // 🔒 cheating flag
 
-    // Cheating Prevention
-    useEffect(() => {
-        const handleVisibilityChange = () => {
-            if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
-                resetQuizDueToCheating();
-            }
-        };
+    // Cheating Logic ....
+    // useEffect(() => {
+    //     const handleVisibilityChange = () => {
+    //         if (document.visibilityState === "hidden" && !hasCheatedRef.current) {
+    //             resetQuizDueToCheating();
+    //         }
+    //     };
 
-        const handleBlur = () => {
-            if (!hasCheatedRef.current) {
-                resetQuizDueToCheating();
-            }
-        };
+    //     const handleBlur = () => {
+    //         if (!hasCheatedRef.current) {
+    //             resetQuizDueToCheating();
+    //         }
+    //     };
 
-        window.addEventListener("blur", handleBlur);
-        document.addEventListener("visibilitychange", handleVisibilityChange);
+    //     window.addEventListener("blur", handleBlur);
+    //     document.addEventListener("visibilitychange", handleVisibilityChange);
 
-        return () => {
-            window.removeEventListener("blur", handleBlur);
-            document.removeEventListener("visibilitychange", handleVisibilityChange);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener("blur", handleBlur);
+    //         document.removeEventListener("visibilitychange", handleVisibilityChange);
+    //     };
+    // }, []);
 
     const resetQuizDueToCheating = () => {
         hasCheatedRef.current = true; // ✅ Prevent multiple resets
@@ -135,7 +135,7 @@ export default function QuizPage() {
                 <button
                     onClick={goToPrevious}
                     disabled={currentIndex === 0}
-                    className="flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
+                    className="flex items-center justify-center bg-gradient-to-r from-gray-800 to-gray-700 hover:bg-gradient-to-l text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                 >
                     <ArrowLeft size={18} className="mr-2" />
                     Previous
@@ -145,7 +145,7 @@ export default function QuizPage() {
                     <button
                         onClick={finishQuiz}
                         disabled={answers[currentIndex] === null}
-                        className="flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
+                        className="flex items-center justify-center bg-gradient-to-l from-green-700 to-green-600 hover:bg-gradient-to-r text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                     >
                         <CheckCircle size={18} className="mr-2" />
                         Finish Quiz
@@ -154,7 +154,7 @@ export default function QuizPage() {
                     <button
                         onClick={goToNext}
                         disabled={answers[currentIndex] === null}
-                        className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
+                        className="flex items-center justify-center bg-gradient-to-l from-blue-800 to-blue-700 hover:bg-gradient-to-r text-white font-medium py-2 px-6 rounded-lg shadow disabled:opacity-50 disabled:cursor-not-allowed transition-all text-sm sm:text-base cursor-pointer"
                     >
                         Next
                         <ArrowRight size={18} className="ml-2" />

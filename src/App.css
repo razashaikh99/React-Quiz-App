@@ -11,6 +11,14 @@ body {
   overflow-x: hidden;
 }
 
+.bg-btn {
+  background: linear-gradient(to bottom right, rgb(83, 83, 255), rgb(230, 58, 230));
+}
+
+.bg-btn:hover {
+  background: linear-gradient(to bottom right, rgb(75, 75, 255), rgb(193, 53, 193));
+}
+
 @theme {
   --color-primary: #000;
 }
